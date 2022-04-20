@@ -1,0 +1,51 @@
+{
+  "$id": "https://raw.githubusercontent.com/D3TaLES/educational/no-sql/schema/dft_schema.json",
+  "title": "dft_schema",
+  "description": "Schema for DFT data",
+  "type": "object",
+  "properties": {
+          "code_used": {
+            "description": "Name of code used for DFT calculation",
+            "type": "string"
+          },
+          "functional": {
+            "description": "Functional used for the calculation",
+            "type": "string"
+          },
+          "basis_set": {
+            "description": "Basis-set used for the calculation",
+            "type": "string"
+          },
+          "charge": {
+            "description": "Electronic charge on the molecule",
+            "type": "integer"
+          },
+          "spin_multiplicity": {
+            "description": "Spin multiplicity of the molecule",
+            "type": "integer"
+          },
+          "geometry": {
+            "description": "Description of a molecule geometry",
+            "$ref": "https://raw.githubusercontent.com/D3TaLES/educational/no-sql/schema/geometry_sites_schema.json"
+          },
+          "scf_dipole_moment": {
+            "description": "The X, Y, and Z dipole components of electric dipole moment. Units: Debye",
+            "type": "number"
+          },
+          "scf_total_energy": {
+            "description": "Total energy calculated from SCF cycles. Units: eV",
+            "type": "number"
+          },
+          "homo": {
+            "description": "Highest occupied molecular orbital. Units: eV",
+            "type": "number"
+          },
+          "lumo": {
+            "description": "Lowest unoccupied molecular orbital. Units: eV",
+            "type": "number"
+          }
+        }
+}
+
+
+

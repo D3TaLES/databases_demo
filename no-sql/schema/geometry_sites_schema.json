@@ -1,0 +1,62 @@
+{
+  "$id": "https://raw.githubusercontent.com/D3TaLES/educational/no-sql/schema/geometry_sites_schema.json",
+  "title": "geometry_sites",
+  "description": "Pymatgen geometry xyz sites",
+  "type": "array",
+  "items": [
+    {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "species": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "element": {
+                  "type": "string"
+                },
+                "occu": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "element",
+                "occu"
+              ]
+            }
+          ]
+        },
+        "xyz": {
+          "type": "array",
+          "items": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            },
+            {
+              "type": "number"
+            }
+          ]
+        },
+        "properties": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "name",
+        "species",
+        "xyz",
+        "properties"
+      ]
+    }
+  ]
+}
+
+
+

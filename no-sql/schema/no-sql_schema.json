@@ -1,0 +1,67 @@
+{
+  "$id": "https://raw.githubusercontent.com/D3TaLES/databases_demo/schema/no-sql_schema.json",
+  "title": "no-sql_schema",
+  "description": "Schema for molecule-centric NoSQL demo database",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "description": "A unique id (UUID) for the molecule",
+      "type": "string"
+    },
+    "smiles": {
+      "description": "SMILES representation of a molecule",
+      "type": "string"
+    },
+    "synonyms": {
+      "type": "array",
+      "description": "Synonymous names of the molecule",
+      "items": {
+        "type": "string",
+        "description": "One synonym for the molecule."
+      }
+    },
+    "molecular_formula": {
+      "type": "string",
+      "description": "Molecular formula for molecule."
+    },
+    "groundState_charge": {
+      "type": "number",
+      "description": "Charge of the ground state molecule."
+    },
+    "number_of_atoms": {
+      "type": "integer",
+      "description": "Number of atoms in the molecule."
+    },
+    "molecular_weight": {
+      "type": "number",
+      "description": "Molecular weight of the molecule in g/mol."
+    },
+    "source": {
+      "description": "Source of the molecule",
+      "type": "string"
+    },
+    "date_made": {
+      "description": "Date the molecule was made",
+      "type": "string",
+      "format": "date-time"
+    },
+    "dft_data": {
+      "description": "List of data from DFT calculations",
+      "type": "array",
+      "items": {
+        "description": "Data from a single DFT calculation",
+        "$ref": "https://raw.githubusercontent.com/D3TaLES/educational/no-sql/schema/dft_schema.json"
+      }
+    },
+    "cv_data": {
+      "description": "List of data from DFT calculations",
+      "type": "array",
+      "items": {
+        "description": "Data from a single CV file",
+        "$ref": "https://raw.githubusercontent.com/D3TaLES/educational/no-sql/schema/cv_schema.json"
+      }
+    }
+  },
+  "additionalProperties": false
+}
+
