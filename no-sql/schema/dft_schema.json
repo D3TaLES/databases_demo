@@ -1,5 +1,5 @@
 {
-  "$id": "https://raw.githubusercontent.com/D3TaLES/educational/no-sql/schema/dft_schema.json",
+  "$id": "https://raw.githubusercontent.com/D3TaLES/databases_demo/main/no-sql/schema/dft_schema.json",
   "title": "dft_schema",
   "description": "Schema for DFT data",
   "type": "object",
@@ -26,7 +26,7 @@
           },
           "geometry": {
             "description": "Description of a molecule geometry",
-            "$ref": "https://raw.githubusercontent.com/D3TaLES/educational/no-sql/schema/geometry_sites_schema.json"
+            "$ref": "https://raw.githubusercontent.com/D3TaLES/databases_demo/main/no-sql/schema/geometry_sites_schema.json"
           },
           "scf_dipole_moment": {
             "description": "The X, Y, and Z dipole components of electric dipole moment. Units: Debye",
