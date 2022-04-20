@@ -2,7 +2,6 @@ CREATE TABLE [Molecules] (
 	'mol_id' VARCHAR(255)  NOT NULL PRIMARY KEY,
 	'smiles' VARCHAR(255),
 	'molecular_formula' VARCHAR(255),
-	'groundState_charge' INTEGER,
 	'number_of_atoms' INTEGER,
 	'molecular_weight' FLOAT,
 	'source' VARCHAR(255),

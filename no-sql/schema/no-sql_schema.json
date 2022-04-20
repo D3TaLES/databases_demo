@@ -24,10 +24,6 @@
       "type": "string",
       "description": "Molecular formula for molecule."
     },
-    "groundState_charge": {
-      "type": "number",
-      "description": "Charge of the ground state molecule."
-    },
     "number_of_atoms": {
       "type": "integer",
       "description": "Number of atoms in the molecule."
