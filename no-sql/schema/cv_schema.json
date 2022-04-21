@@ -6,8 +6,7 @@
   "properties": {
           "date_recorded": {
             "description": "Date and time CV data was collected",
-            "type": "string",
-            "format": "date-time"
+            "type": "string"
           },
           "working_electrode": {
             "description": "Working electrode used",
@@ -43,10 +42,6 @@
           },
           "num_scans": {
             "description": "Number of CV scans",
-            "type": "number"
-          },
-          "initial_potential": {
-            "description": "Initial potential in volts",
             "type": "number"
           },
           "working_electrode_surface_area": {

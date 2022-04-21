@@ -5,7 +5,7 @@
   "type": "object",
   "properties": {
     "_id": {
-      "description": "A unique id (UUID) for the molecule",
+      "description": "IUPAC Name for the molecule for the molecule",
       "type": "string"
     },
     "smiles": {
@@ -38,8 +38,7 @@
     },
     "date_made": {
       "description": "Date the molecule was made",
-      "type": "string",
-      "format": "date-time"
+      "type": "string"
     },
     "dft_data": {
       "description": "List of data from DFT calculations",

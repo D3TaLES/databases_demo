@@ -28,10 +28,6 @@
             "description": "Description of a molecule geometry",
             "$ref": "https://raw.githubusercontent.com/D3TaLES/databases_demo/main/no-sql/schema/geometry_sites_schema.json"
           },
-          "scf_dipole_moment": {
-            "description": "The X, Y, and Z dipole components of electric dipole moment. Units: Debye",
-            "type": "number"
-          },
           "scf_total_energy": {
             "description": "Total energy calculated from SCF cycles. Units: eV",
             "type": "number"
