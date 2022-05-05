@@ -82,7 +82,7 @@
  %chk=opt_groundState.chk
  %mem=48GB
  %nprocshared=16
- Will use up to   16 processors via shared memory.
+ Will use up to   16 processor via shared memory.
  ----------------------------------------------------------------------
  #P LC-wHPBE/Def2SVP iop(3/107=0156500000, 3/108=0156500000) opt scf(ma
  xcyc=512)

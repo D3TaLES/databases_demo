@@ -1,8 +1,8 @@
 import uuid
 import json
 from datetime import date
-from databases_demo.Processors.cv_parser import *
-from databases_demo.Processors.dft_parser import *
+from databases_demo.processors.cv_parser import *
+from databases_demo.processors.dft_parser import *
 import pubchempy as pcp
 from rdkit.Chem.rdchem import Mol
 from rdkit.Chem.rdmolops import AddHs
