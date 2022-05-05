@@ -10,12 +10,9 @@ class ParseGausLog:
 
     def __init__(self, filepath, ):
         self.log_path = filepath
-        self.pmgmol = GaussianOutput(filepath)
         self.code_used = 'Gaussian'
+        pmgmol = GaussianOutput(filepath)
 
-        self.parse_file()
-
-    def parse_file(self):
         self.functional = self.pmgmol.functional
         self.basis_set = self.pmgmol.basis_set
         self.charge = self.pmgmol.charge
@@ -49,18 +46,42 @@ class ParsePsi4Log:
         self.log_path = filepath
         self.code_used = 'Psi4'
 
-        self.parse_file()
-
-    def parse_file(self):
-        self.functional = self.find_in_file('Composite Functional:', 3)
-        self.basis_set = self.find_in_file('Basis Set:', 2)
-        self.charge = int(re.sub("[^0-9]", "", self.find_in_file('charge', 5)))
-        self.spin_multiplicity = int(re.sub("[^0-9]", "", self.find_in_file('multiplicity', 8)))
         self.geometry = []
-        self.scf_total_energy = float(self.find_in_file('Final Energy:', 3)) * 27.2114  # convert to eV
-
         self.homo = self.homo_lumo["homo"]
         self.lumo = self.homo_lumo["lumo"]
+
+    @property
+    def functional(self):
+        with open(self.log_path) as f:
+            values = [line.strip().split()[3] for line in f if re.search(r"{}".format('Composite Functional:'), line)]
+        return values[0]
+
+    @property
+    def basis_set(self):
+        with open(self.log_path) as f:
+            values = [line.strip().split()[2] for line in f if re.search(r"{}".format('Basis Set:'), line)]
+        return values[0]
+
+    @property
+    def charge(self):
+        with open(self.log_path) as f:
+            values = [line.strip().split()[5] for line in f if re.search(r"{}".format('charge'), line)]
+        target_value = values[0]
+        return int(re.sub("[^0-9]", "", target_value))
+
+    @property
+    def spin_multiplicity(self):
+        with open(self.log_path) as f:
+            values = [line.strip().split()[8] for line in f if re.search(r"{}".format('multiplicity'), line)]
+        target_value = values[0]
+        return int(re.sub("[^0-9]", "", target_value))
+
+    @property
+    def scf_total_energy(self):
+        with open(self.log_path) as f:
+            values = [line.strip().split()[3] for line in f if re.search(r"{}".format('Final Energy:'), line)]
+        target_value = values[0]
+        return float(target_value) * 27.2114  # convert to eV
 
     @property
     def homo_lumo(self):
@@ -69,17 +90,16 @@ class ParsePsi4Log:
         :return: [homo, lumo] - list containing homo then lumo in eV
         """
         return {"homo": 0, "lumo": 0}
+        num_electrons = None
         with open(self.log_path) as f:
-            num_electrons: float = self.find_in_file('Electrons', 3)[0]
+            for line in f.readlines():
+                if re.search(r"{}".format('Electrons'), line) and not num_electrons:
+                    num_electrons = int(line.strip().split()[3])
             eigenvalues = {}
 
-        eigens = eigenvalues.values()
+        eigens = list(eigenvalues.values())
         homo = eigens[num_electrons - 1] * 27.2114  # convert to eV
         lumo = eigens[num_electrons] * 27.2114  # convert to eV
 
         return {"homo": homo, "lumo": lumo}
 
-    def find_in_file(self, search_text, target_position):
-        with open(self.log_path) as f:
-            value = [line.strip().split()[target_position] for line in f if re.search(r"{}".format(search_text), line)]
-        return value[0]
