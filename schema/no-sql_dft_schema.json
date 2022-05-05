@@ -1,5 +1,5 @@
 {
-  "$id": "https://raw.githubusercontent.com/D3TaLES/databases_demo/mainschema/no-sql_dft_schema.json",
+  "$id": "https://raw.githubusercontent.com/D3TaLES/databases_demo/main/schema/no-sql_dft_schema.json",
   "title": "dft_schema",
   "description": "Schema for DFT data",
   "type": "object",
@@ -26,7 +26,7 @@
           },
           "geometry": {
             "description": "Description of a molecule geometry",
-            "$ref": "https://raw.githubusercontent.com/D3TaLES/databases_demo/mainschema/geometry_sites_schema.json"
+            "$ref": "https://raw.githubusercontent.com/D3TaLES/databases_demo/main/schema/geometry_sites_schema.json"
           },
           "scf_total_energy": {
             "description": "Total energy calculated from SCF cycles. Units: eV",

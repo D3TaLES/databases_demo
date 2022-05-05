@@ -1,5 +1,5 @@
 {
-  "$id": "https://raw.githubusercontent.com/D3TaLES/databases_demo/mainschema/no-sql_schema.json",
+  "$id": "https://raw.githubusercontent.com/D3TaLES/databases_demo/main/schema/no-sql_schema.json",
   "title": "no-sql_schema",
   "description": "Schema for molecule-centric NoSQL demo database",
   "type": "object",
@@ -45,7 +45,7 @@
       "type": "array",
       "items": {
         "description": "Data from a single DFT calculation",
-        "$ref": "https://raw.githubusercontent.com/D3TaLES/databases_demo/mainschema/no-sql_dft_schema.json"
+        "$ref": "https://raw.githubusercontent.com/D3TaLES/databases_demo/main/schema/no-sql_dft_schema.json"
       }
     },
     "cv_data": {
@@ -53,7 +53,7 @@
       "type": "array",
       "items": {
         "description": "Data from a single CV file",
-        "$ref": "https://raw.githubusercontent.com/D3TaLES/databases_demo/mainschema/no-sql_cv_schema.json"
+        "$ref": "https://raw.githubusercontent.com/D3TaLES/databases_demo/main/schema/no-sql_cv_schema.json"
       }
     }
   },
