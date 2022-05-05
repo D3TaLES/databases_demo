@@ -11,7 +11,7 @@ class ParseGausLog:
     def __init__(self, filepath, ):
         self.log_path = filepath
         self.code_used = 'Gaussian'
-        pmgmol = GaussianOutput(filepath)
+        self.pmgmol = GaussianOutput(filepath)
 
         self.functional = self.pmgmol.functional
         self.basis_set = self.pmgmol.basis_set
