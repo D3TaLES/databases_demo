@@ -22,6 +22,6 @@ examples.
 ## SQL Example
 [Notebook](https://github.com/D3TaLES/databases_demo/blob/main/sql/sql_notebook.ipynb)
 
-## SQL Example
+## No-SQL Example
 [Notebook](https://github.com/D3TaLES/databases_demo/blob/main/no-sql/no-sql_notebook.ipynb)
 
