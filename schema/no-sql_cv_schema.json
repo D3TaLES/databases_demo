@@ -1,5 +1,5 @@
 {
-  "$id": "https://raw.githubusercontent.com/D3TaLES/databases_demo/main/no-sql/schema/cv_schema.json",
+  "$id": "https://raw.githubusercontent.com/D3TaLES/databases_demo/main/no-sql/schema/no-sql_cv_schema.json",
   "title": "cv_schema",
   "description": "Schema for CV data",
   "type": "object",

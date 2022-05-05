@@ -1,5 +1,5 @@
 {
-  "$id": "https://raw.githubusercontent.com/D3TaLES/databases_demo/main/no-sql/schema/dft_schema.json",
+  "$id": "https://raw.githubusercontent.com/D3TaLES/databases_demo/main/no-sql/schema/no-sql_dft_schema.json",
   "title": "dft_schema",
   "description": "Schema for DFT data",
   "type": "object",

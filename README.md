@@ -20,8 +20,8 @@ computational and experimental data files. These parsing codes are used in the
 examples. 
 
 ## SQL Example
-[Notebook](https://github.com/D3TaLES/databases_demo/blob/main/sql/sql_notebook.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1gQV3LxoQ65NyTFQulHzLTp8IRV3lCICT?usp=sharing)
 
 ## No-SQL Example
-[Notebook](https://github.com/D3TaLES/databases_demo/blob/main/no-sql/no-sql_notebook.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1LFJUazlB9JYoeqk6U9OVJ3l_m6tu_knD?usp=sharing)
 
