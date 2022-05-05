@@ -1,5 +1,5 @@
 {
-  "$id": "https://raw.githubusercontent.com/D3TaLES/databases_demo/main/no-sql/schema/geometry_sites_schema.json",
+  "$id": "https://raw.githubusercontent.com/D3TaLES/databases_demo/mainschema/geometry_sites_schema.json",
   "title": "geometry_sites",
   "description": "Pymatgen geometry xyz sites",
   "type": "array",

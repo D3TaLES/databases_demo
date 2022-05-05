@@ -3,7 +3,7 @@
 This repository gives simple, chemistry-based demonstrations of both an SQL
 and a No-SQL database structure. For each database structure, there exists 
 an example notebook that shows how to: 
-1. Initiate the database 
+1. Initialize the database 
 2. Load a schema and use it to validate example data
 3. Insert validated data into the database
 4. Query the database.
