@@ -63,7 +63,7 @@ class GenerateMolInfo:
     @property
     def sql_data(self):
         data_dict = {
-            "_id": self._id,
+            "mol_id": self._id,
             "smiles": self.smiles,
             "molecular_formula": self.molecular_formula,
             "number_of_atoms": self.number_of_atoms,
