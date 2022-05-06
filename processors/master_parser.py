@@ -53,13 +53,26 @@ class GenerateMolInfo:
             "source": self.source,
             "date_made": self.date_made,
         }
-        print(data_dict)
         json_data = json.dumps(data_dict, default=str)
         return json.loads(json_data)
 
     @property
+    def sql_synonym_data(self):
+        return [{"synonym": synonym, "mol_id": self._id} for synonym in self.synonyms]
+
+    @property
     def sql_data(self):
-        return {}
+        data_dict = {
+            "_id": self._id,
+            "smiles": self.smiles,
+            "molecular_formula": self.molecular_formula,
+            "number_of_atoms": self.number_of_atoms,
+            "molecular_weight": self.molecular_weight,
+            "source": self.source,
+            "date_made": self.date_made,
+        }
+        json_data = json.dumps(data_dict, default=str)
+        return json.loads(json_data)
 
 
 class ProcessDFT:
@@ -71,6 +84,7 @@ class ProcessDFT:
     def __init__(self, filepath, mol_id=None, parsing_class=ParseGausLog):
         self.log_path = filepath
         self.mol_id = mol_id
+        self.uuid = str(uuid.uuid4())
 
         self.DFTData = parsing_class(filepath)
 
@@ -92,7 +106,20 @@ class ProcessDFT:
 
     @property
     def sql_data(self):
-        return {}
+        data_dict = {
+            "calculation_id": self.uuid,
+            "mol_id": self.mol_id,
+            "code_used": self.DFTData.code_used,
+            "functional": self.DFTData.functional,
+            "basis_set": self.DFTData.basis_set,
+            "charge": self.DFTData.charge,
+            "spin_multiplicity": self.DFTData.spin_multiplicity,
+            "scf_total_energy": self.DFTData.scf_total_energy,
+            "homo": self.DFTData.homo,
+            "lumo": self.DFTData.lumo,
+        }
+        json_data = json.dumps(data_dict, default=str)
+        return json.loads(json_data)
 
 
 class ProcessCV:
@@ -143,4 +170,25 @@ class ProcessCV:
 
     @property
     def sql_data(self):
-        return {}
+        all_data_dict = {
+            "cv_id": self.uuid,
+            "mol_id": self.mol_id,
+            "date_recorded": self.CVData.date_recorded,
+            "working_electrode": self.working_electrode,
+            "counter_electrode": self.counter_electrode,
+            "reference_electrode": self.reference_electrode,
+            "solvent": self.solvent,
+            "electrolyte": self.electrolyte,
+            "ionic_liquid": self.ionic_liquid,
+            "instrument": self.instrument,
+            "working_electrode_surface_area": self.working_electrode_surface_area,
+            "redox_mol_concentration": self.redox_mol_concentration,
+            "scan_rate": self.CVData.scan_rate,
+            "num_scans": self.CVData.num_scans,
+            "quiet_time": self.CVData.quiet_time,
+            "sensitivity": self.CVData.sensitivity,
+            "comp_r": self.CVData.comp_R,
+            "scan_data": self.CVData.scan_data,
+        }
+        json_data = json.dumps(all_data_dict, default=str)
+        return json.loads(json_data)
