@@ -19,7 +19,7 @@ class Molecules(Base):
     number_of_atoms = Column(Integer, nullable=False)
     molecular_weight = Column(Float, nullable=False)
     source = Column(String)
-    date_made = Column(DateTime, default=datetime.datetime.utcnow, index=True)
+    date_made = Column(String, default=datetime.datetime.utcnow, index=True)
 
 
 class DftData(Base):
@@ -27,7 +27,7 @@ class DftData(Base):
 
     calculation_id = Column(String, primary_key=True)
     mol_id = Column(String, ForeignKey("molecules.mol_id"))
-    date_added = Column(DateTime, default=datetime.datetime.utcnow, index=True)
+    date_added = Column(String, default=datetime.datetime.utcnow, index=True)
     code_used = Column(String)
     functional = Column(String)
     basis_set = Column(String)
@@ -51,7 +51,7 @@ class CvData(Base):
 
     cv_id = Column(String, primary_key=True)
     mol_id = Column(String, ForeignKey("molecules.mol_id"))
-    date_recorded = Column(DateTime)
+    date_recorded = Column(String)
     working_electrode = Column(String)
     counter_electrode = Column(String)
     reference_electrode = Column(String)
