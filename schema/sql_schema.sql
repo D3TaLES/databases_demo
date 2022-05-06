@@ -23,13 +23,6 @@ CREATE TABLE [DftData] (
 	'lumo' FLOAT,
 );
 
-CREATE TABLE [Geometry] (
-    'geometry_id' VARCHAR(255)  NOT NULL PRIMARY KEY,
-	'mol_id' VARCHAR(255),
-    ...
-    FOREIGN KEY(mol_id) REFERENCES album(Molecules)
-);
-
 CREATE TABLE [CvData] (
 	'cv_id' VARCHAR(255)  NOT NULL PRIMARY KEY,
 	'mol_id' VARCHAR(255),

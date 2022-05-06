@@ -24,10 +24,6 @@
             "description": "Spin multiplicity of the molecule",
             "type": "integer"
           },
-          "geometry": {
-            "description": "Description of a molecule geometry",
-            "$ref": "https://raw.githubusercontent.com/D3TaLES/databases_demo/main/schema/geometry_sites_schema.json"
-          },
           "scf_total_energy": {
             "description": "Total energy calculated from SCF cycles. Units: eV",
             "type": "number"

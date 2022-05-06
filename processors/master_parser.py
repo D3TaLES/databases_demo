@@ -96,7 +96,6 @@ class ProcessDFT:
             "basis_set": self.DFTData.basis_set,
             "charge": self.DFTData.charge,
             "spin_multiplicity": self.DFTData.spin_multiplicity,
-            # "geometry": self.DFTData.geometry,
             "scf_total_energy": self.DFTData.scf_total_energy,
             "homo": self.DFTData.homo,
             "lumo": self.DFTData.lumo,

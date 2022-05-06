@@ -38,14 +38,6 @@ class DftData(Base):
     lumo = Column(Float)
 
 
-class Geometry(Base):
-    __tablename__ = "geometry"
-
-    geometry_id = Column(String, primary_key=True)
-    mol_id = Column(String, ForeignKey("molecules.mol_id"))
-    # .....
-
-
 class CvData(Base):
     __tablename__ = "cv_data"
 

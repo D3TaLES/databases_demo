@@ -17,7 +17,6 @@ class ParseGausLog:
         self.basis_set = self.pmgmol.basis_set
         self.charge = self.pmgmol.charge
         self.spin_multiplicity = self.pmgmol.spin_multiplicity
-        self.geometry = self.pmgmol.final_structure.as_dict()['sites']
         self.scf_total_energy = self.pmgmol.final_energy * 27.2114  # convert to eV
         self.homo = self.homo_lumo(self.pmgmol)["homo"]
         self.lumo = self.homo_lumo(self.pmgmol)["lumo"]
@@ -46,7 +45,6 @@ class ParsePsi4Log:
         self.log_path = filepath
         self.code_used = 'Psi4'
 
-        self.geometry = []
         self.homo = self.homo_lumo["homo"]
         self.lumo = self.homo_lumo["lumo"]
 
