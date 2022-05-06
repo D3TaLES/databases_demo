@@ -19,7 +19,7 @@ class Molecules(Base):
     number_of_atoms = Column(Integer, nullable=False)
     molecular_weight = Column(Float, nullable=False)
     source = Column(String)
-    date_added = Column(DateTime, default=datetime.datetime.utcnow, index=True)
+    date_made = Column(DateTime, default=datetime.datetime.utcnow, index=True)
 
 
 class DftData(Base):
