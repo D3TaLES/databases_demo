@@ -11,7 +11,6 @@ an example notebook that shows how to:
 The repository contains four key directories: 
 
 * `schema`: Contains the all schema for both SQL and No-SQL database examples. 
-* `no-sql`: Contains the schema and all examples for a No-SQL database. 
 * `raw_data`: Contains the raw data files for data that is inserted into the databases 
 in the examples. There are two computational data files (one from the software 
 Gaussian and one from the software Psi4) and one experimental potetiostat file. 
