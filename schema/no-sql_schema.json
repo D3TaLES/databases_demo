@@ -41,20 +41,12 @@
       "type": "string"
     },
     "dft_data": {
-      "description": "List of data from DFT calculations",
-      "type": "array",
-      "items": {
-        "description": "Data from a single DFT calculation",
-        "$ref": "https://raw.githubusercontent.com/D3TaLES/databases_demo/main/schema/no-sql_dft_schema.json"
-      }
+      "description": "Data from a single DFT calculation",
+      "$ref": "https://raw.githubusercontent.com/D3TaLES/databases_demo/main/schema/no-sql_dft_schema.json"
     },
     "cv_data": {
-      "description": "List of data from DFT calculations",
-      "type": "array",
-      "items": {
-        "description": "Data from a single CV file",
-        "$ref": "https://raw.githubusercontent.com/D3TaLES/databases_demo/main/schema/no-sql_cv_schema.json"
-      }
+      "description": "Data from a single CV file",
+      "$ref": "https://raw.githubusercontent.com/D3TaLES/databases_demo/main/schema/no-sql_cv_schema.json"
     }
   },
   "additionalProperties": false
