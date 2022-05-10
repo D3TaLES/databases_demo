@@ -150,26 +150,24 @@ class ProcessUvVis:
         return json.loads(json_data)
 
     @property
+    def sql_uvvis_data(self):
+        data = self.UvVisData.absorbance_data
+        return [{"uvvis_id": self.uuid,
+                 "mol_id": self.mol_id,
+                 "wavelength": wavelength,
+                 "absorbance": absorbance}
+                for wavelength, absorbance in zip(data["wavelength"], data["absorbance"])]
+
+    @property
     def sql_data(self):
-        all_data_dict = {
-            "cv_id": self.uuid,
+        data_dict = {
+            "uvvis_id": self.uuid,
             "mol_id": self.mol_id,
-            "date_recorded": self.CVData.date_recorded,
-            "working_electrode": self.working_electrode,
-            "counter_electrode": self.counter_electrode,
-            "reference_electrode": self.reference_electrode,
+            "date_recorded": self.UvVisData.date_recorded,
             "solvent": self.solvent,
-            "electrolyte": self.electrolyte,
-            "ionic_liquid": self.ionic_liquid,
             "instrument": self.instrument,
-            "working_electrode_surface_area": self.working_electrode_surface_area,
-            "redox_mol_concentration": self.redox_mol_concentration,
-            "scan_rate": self.CVData.scan_rate,
-            "num_scans": self.CVData.num_scans,
-            "quiet_time": self.CVData.quiet_time,
-            "sensitivity": self.CVData.sensitivity,
-            "comp_r": self.CVData.comp_R,
-            "scan_data": self.CVData.scan_data,
+            "integration_time": self.UvVisData.integration_time,
+            "absorbance_data": self.UvVisData.absorbance_data,
         }
-        json_data = json.dumps(all_data_dict, default=str)
+        json_data = json.dumps(data_dict, default=str)
         return json.loads(json_data)
