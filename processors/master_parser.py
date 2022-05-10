@@ -182,12 +182,7 @@ class ProcessUvVis:
         """
         Returns UV-Vis information in a dictionary that matches the SQL AbsorbanceData Table schema
         """
-        data = self.UvVisData.absorbance_data
-        return [{"uvvis_id": self.uuid,
-                 "mol_id": self.mol_id,
-                 "wavelength": wavelength,
-                 "absorbance": absorbance}
-                for wavelength, absorbance in zip(data["wavelength"], data["absorbance"])]
+        return [data.update({"uvvis_id": self.uuid, "mol_id": self.mol_id}) for data in self.UvVisData.absorbance_data]
 
     @property
     def sql_data(self):

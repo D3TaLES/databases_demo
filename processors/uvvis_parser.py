@@ -8,6 +8,7 @@ class ParseExcel:
     Args:
         filepath (str) : filepath to Excel data file
     """
+
     def __init__(self, filepath):
         self.file_path = filepath
         self.parse_file()
@@ -21,7 +22,8 @@ class ParseExcel:
         except:
             df = pd.read_csv(self.file_path, header=None, names=['col1', 'col2'])
 
-        self.data_df = df.iloc[4:, :].astype(float, errors='ignore').rename(columns={'col1': 'wavelength', 'col2': 'absorbance'})
+        self.data_df = df.iloc[4:, :].astype(float, errors='ignore').rename(
+            columns={'col1': 'wavelength', 'col2': 'absorbance'})
         self.string_data = df.iloc[:3, :]
 
     @property
@@ -36,6 +38,6 @@ class ParseExcel:
 
     @property
     def absorbance_data(self):
-        return self.data_df.to_dict('list')
+        return self.data_df.to_dict('records')
 
 
