@@ -12,12 +12,13 @@ from rdkit.Chem.rdMolDescriptors import CalcMolFormula, CalcExactMolWt
 
 class GenerateMolInfo:
     """
-        Generate json object for insertion from smiles string
-        :param smiles: smiles string
-        :param source: which group the molecule comes from
-        :param names: list of names for molecule
-        Copyright 2021, University of Kentucky
-        """
+    Generate json object for insertion from smiles string
+    Copyright 2021, University of Kentucky
+    Args:
+        smiles (str) : smiles string
+        source (str) : which group the molecule comes from
+        names (list) : list of names for molecule
+    """
     def __init__(self, smiles, source="", date_made="", names=[]):
         smiles = smiles
         names = names
@@ -43,6 +44,9 @@ class GenerateMolInfo:
 
     @property
     def no_sql_data(self):
+        """
+        Returns molecule information in a dictionary that matches the No-SQL schema
+        """
         data_dict = {
             "_id": self._id,
             "smiles": self.smiles,
@@ -58,10 +62,16 @@ class GenerateMolInfo:
 
     @property
     def sql_synonym_data(self):
+        """
+        Returns synonym information in a dictionary that matches the SQL Synonyms Table schema
+        """
         return [{"synonym": synonym, "mol_id": self._id} for synonym in self.synonyms]
 
     @property
     def sql_data(self):
+        """
+        Returns molecule information in a dictionary that matches the SQL Molecules Table schema
+        """
         data_dict = {
             "mol_id": self._id,
             "smiles": self.smiles,
@@ -79,6 +89,10 @@ class ProcessDFT:
     """
     Class to process DFT logfiles.
     Copyright 2021, University of Kentucky
+    Args:
+        filepath (str) : filepath to data file
+        mol_id (str) : identifier for the molecule this data belongs to
+        parsing_class (class) : a DFT parsing class with which to parse the data
     """
 
     def __init__(self, filepath, mol_id=None, parsing_class=ParseGausLog):
@@ -90,6 +104,9 @@ class ProcessDFT:
 
     @property
     def no_sql_data(self):
+        """
+        Returns DFT information in a dictionary that matches the No-SQL schema
+        """
         data_dict = {
             "code_used": self.DFTData.code_used,
             "functional": self.DFTData.functional,
@@ -105,6 +122,9 @@ class ProcessDFT:
 
     @property
     def sql_data(self):
+        """
+        Returns DFT information in a dictionary that matches the SQL DftData Table schema
+        """
         data_dict = {
             "calculation_id": self.uuid,
             "mol_id": self.mol_id,
@@ -123,8 +143,13 @@ class ProcessDFT:
 
 class ProcessUvVis:
     """
-    Class to process Gaussian logfiles.
+    Class to process UV-Vis data files.
     Copyright 2021, University of Kentucky
+    Args:
+        filepath (str) : filepath to data file
+        mol_id (str) : identifier for the molecule this data belongs to
+        metadata (dict) : dictionary containing any metadata for this molecule, e.g., {"solvent": "acetonitrile"}
+        parsing_class (class) : a UV-Vis parsing class with which to parse the data
     """
 
     def __init__(self, filepath, mol_id, metadata=None, parsing_class=ParseExcel):
@@ -139,6 +164,9 @@ class ProcessUvVis:
 
     @property
     def no_sql_data(self):
+        """
+        Returns UV-Vis information in a dictionary that matches the No-SQL schema
+        """
         all_data_dict = {
             "date_recorded": self.UvVisData.date_recorded,
             "solvent": self.solvent,
@@ -150,7 +178,10 @@ class ProcessUvVis:
         return json.loads(json_data)
 
     @property
-    def sql_uvvis_data(self):
+    def sql_absorbance_data(self):
+        """
+        Returns UV-Vis information in a dictionary that matches the SQL AbsorbanceData Table schema
+        """
         data = self.UvVisData.absorbance_data
         return [{"uvvis_id": self.uuid,
                  "mol_id": self.mol_id,
@@ -160,6 +191,9 @@ class ProcessUvVis:
 
     @property
     def sql_data(self):
+        """
+        Returns UV-Vis information in a dictionary that matches the SQL UVVisData Table schema
+        """
         data_dict = {
             "uvvis_id": self.uuid,
             "mol_id": self.mol_id,

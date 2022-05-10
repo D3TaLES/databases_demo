@@ -2,11 +2,20 @@ import pandas as pd
 
 
 class ParseExcel:
-    def __init__(self, file_path):
-        self.file_path = file_path
+    """
+    Class to process raw UV-Vis data in an Excel format
+    Copyright 2021, University of Kentucky
+    Args:
+        filepath (str) : filepath to Excel data file
+    """
+    def __init__(self, filepath):
+        self.file_path = filepath
         self.parse_file()
 
     def parse_file(self):
+        """
+        Use Pandas to parse the raw data file
+        """
         try:
             df = pd.read_excel(self.file_path, header=None, names=['col1', 'col2'])
         except:

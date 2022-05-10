@@ -6,9 +6,11 @@ class ParseGausLog:
     """
     Class to process Gaussian logfiles.
     Copyright 2021, University of Kentucky
+    Args:
+        filepath (str) : filepath to data file
     """
 
-    def __init__(self, filepath, ):
+    def __init__(self, filepath):
         self.log_path = filepath
         self.code_used = 'Gaussian'
         self.pmgmol = GaussianOutput(filepath)
@@ -25,7 +27,8 @@ class ParseGausLog:
     def homo_lumo(pymatgen_mol):
         """
         Get homo and lumo energies from a Gaussian molecule
-        :return: [homo, lumo] - list containing homo then lumo in eV
+        return
+            homo_lumo (dict) : dictionary containing homo then lumo in eV
         """
         num_electrons = pymatgen_mol.electrons[0]
         eigens = list(pymatgen_mol.eigenvalues.values())[0]
@@ -39,6 +42,8 @@ class ParsePsi4Log:
     """
     Class to process Gaussian logfiles.
     Copyright 2021, University of Kentucky
+    Args:
+        filepath (str) : filepath to data file
     """
 
     def __init__(self, filepath, ):
@@ -85,7 +90,8 @@ class ParsePsi4Log:
     def homo_lumo(self):
         """
         Get homo and lumo energies from a Gaussian molecule
-        :return: [homo, lumo] - list containing homo then lumo in eV
+        return
+            homo_lumo (dict) : dictionary containing homo then lumo in eV
         """
         return {"homo": 0, "lumo": 0}
         num_electrons = None
