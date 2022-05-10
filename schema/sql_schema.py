@@ -38,26 +38,24 @@ class DftData(Base):
     lumo = Column(Float)
 
 
-class CvData(Base):
-    __tablename__ = "cv_data"
+class UvVisData(Base):
+    __tablename__ = "uvvis_data"
 
-    cv_id = Column(String, primary_key=True)
+    uvvis_id = Column(String, primary_key=True)
     mol_id = Column(String, ForeignKey("molecules.mol_id"))
     date_recorded = Column(String)
-    working_electrode = Column(String)
-    counter_electrode = Column(String)
-    reference_electrode = Column(String)
     solvent = Column(String)
-    electrolyte = Column(String)
-    ionic_liquid = Column(String)
     instrument = Column(String)
-    scan_rate = Column(Float)
-    num_scans = Column(Integer)
-    working_electrode_surface_area = Column(Float)
-    redox_mol_concentration = Column(Float)
-    quiet_time = Column(Float)
-    sensitivity = Column(Float)
-    comp_r = Column(Float)
+    integration_time = Column(Float)
+
+
+class AbsorbanceData(Base):
+    __tablename__ = "absorbance_data"
+
+    uvvis_id = Column(String, ForeignKey("uvvis_data.uvvis_id"))
+    mol_id = Column(String, ForeignKey("molecules.mol_id"))
+    wavelength = Column(Float)
+    absorbance = Column(Float)
 
 
 class Synonyms(Base):

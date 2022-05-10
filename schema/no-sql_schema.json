@@ -44,9 +44,9 @@
       "description": "Data from a single DFT calculation",
       "$ref": "https://raw.githubusercontent.com/D3TaLES/databases_demo/main/schema/no-sql_dft_schema.json"
     },
-    "cv_data": {
+    "uvvis_data": {
       "description": "Data from a single CV file",
-      "$ref": "https://raw.githubusercontent.com/D3TaLES/databases_demo/main/schema/no-sql_cv_schema.json"
+      "$ref": "https://raw.githubusercontent.com/D3TaLES/databases_demo/main/schema/no-sql_uvvis_schema.json"
     }
   },
   "additionalProperties": false

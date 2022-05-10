@@ -1,7 +1,7 @@
 import uuid
 import json
 from datetime import date
-from databases_demo.processors.cv_parser import *
+from databases_demo.processors.uvvis_parser import *
 from databases_demo.processors.dft_parser import *
 import pubchempy as pcp
 from rdkit.Chem.rdchem import Mol
@@ -121,48 +121,30 @@ class ProcessDFT:
         return json.loads(json_data)
 
 
-class ProcessCV:
+class ProcessUvVis:
     """
     Class to process Gaussian logfiles.
     Copyright 2021, University of Kentucky
     """
 
-    def __init__(self, filepath, mol_id, metadata=None, parsing_class=ParseChiCV):
+    def __init__(self, filepath, mol_id, metadata=None, parsing_class=ParseExcel):
         self.mol_id = mol_id
         self.uuid = str(uuid.uuid4())
 
         metadata = metadata or {}
         self.instrument = metadata.get("instrument", '')
-        self.working_electrode = metadata.get("electrode_working", '')
-        self.counter_electrode = metadata.get("electrode_counter", '')
-        self.reference_electrode = metadata.get("electrode_reference", '')
-        self.redox_mol_concentration = metadata.get("redox_mol_concentration", '')
-        self.working_electrode_surface_area = metadata.get("working_electrode_surface_area", '')
         self.solvent = metadata.get("solvent", '')
-        self.electrolyte = metadata.get("electrolyte", '')
-        self.ionic_liquid = metadata.get("ionic_liquid", '')
 
-        self.CVData = parsing_class(filepath)
+        self.UvVisData = parsing_class(filepath)
 
     @property
     def no_sql_data(self):
         all_data_dict = {
-            "date_recorded": self.CVData.date_recorded,
-            "working_electrode": self.working_electrode,
-            "counter_electrode": self.counter_electrode,
-            "reference_electrode": self.reference_electrode,
+            "date_recorded": self.UvVisData.date_recorded,
             "solvent": self.solvent,
-            "electrolyte": self.electrolyte,
-            "ionic_liquid": self.ionic_liquid,
             "instrument": self.instrument,
-            "working_electrode_surface_area": self.working_electrode_surface_area,
-            "redox_mol_concentration": self.redox_mol_concentration,
-            "scan_rate": self.CVData.scan_rate,
-            "num_scans": self.CVData.num_scans,
-            "quiet_time": self.CVData.quiet_time,
-            "sensitivity": self.CVData.sensitivity,
-            "comp_r": self.CVData.comp_R,
-            "scan_data": self.CVData.scan_data,
+            "integration_time": self.UvVisData.integration_time,
+            "absorbance_data": self.UvVisData.absorbance_data,
         }
         json_data = json.dumps(all_data_dict, default=str)
         return json.loads(json_data)

@@ -1,0 +1,42 @@
+{
+  "$id": "https://raw.githubusercontent.com/D3TaLES/databases_demo/main/schema/no-sql_uvvis_schema.json",
+  "title": "uvvis_schema",
+  "description": "Schema for UV-Vis data",
+  "type": "object",
+  "properties": {
+    "date_recorded": {
+      "description": "Date and time uvvis data was collected",
+      "type": "string"
+    },
+    "solvent": {
+      "description": "Solvent used in experiment.",
+      "type": "string"
+    },
+    "instrument": {
+      "description": "Instrument used in experiment.",
+      "type": "string"
+    },
+    "integration_time": {
+      "description": "",
+      "type": "number"
+    },
+    "absorbance_data": {
+      "description": "Data points gather from UV-Vis scan",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "wavelength": {
+            "type": "number"
+          },
+          "absorbance": {
+            "type": "number"
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
