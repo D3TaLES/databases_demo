@@ -106,7 +106,7 @@ class ProcessDFT:
             "spin_multiplicity": self.DFTData.spin_multiplicity,
             "scf_total_energy": self.DFTData.scf_total_energy,
             "homo": self.DFTData.homo,
-            "lumo": self.DFTData.lumo,
+            "lumo": self.DFTData.lumo - self.DFTData.homo,
             "homo_lumo_gap": self.DFTData.lumo,
         }
         if self.sql:
