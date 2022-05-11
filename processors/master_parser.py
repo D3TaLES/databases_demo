@@ -150,7 +150,7 @@ class ProcessUvVis:
             "integration_time": self.UvVisData.integration_time,
         }
         if self.sql:
-            data_dict.update({"absorbance_id": str(uuid.uuid4()), "uvvis_id": self.uuid, "mol_id": self.mol_id})
+            data_dict.update({"uvvis_id": self.uuid, "mol_id": self.mol_id})
         else:
             data_dict.update({"absorbance_data": self.UvVisData.absorbance_data})
 
@@ -162,4 +162,4 @@ class ProcessUvVis:
         """
         Returns UV-Vis information in a dictionary that matches the SQL AbsorbanceData Table schema
         """
-        return [data.update({"uvvis_id": self.uuid, "mol_id": self.mol_id}) for data in self.UvVisData.absorbance_data]
+        return [data.update({"absorbance_id": str(uuid.uuid4()), "uvvis_id": self.uuid, "mol_id": self.mol_id}) for data in self.UvVisData.absorbance_data]
