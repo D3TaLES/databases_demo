@@ -53,7 +53,6 @@ class GenerateMolInfo:
         """
         data_dict = {
             "smiles": self.smiles,
-            "synonyms": self.synonyms,
             "molecular_formula": self.molecular_formula,
             "number_of_atoms": self.number_of_atoms,
             "molecular_weight": self.molecular_weight,
@@ -68,6 +67,7 @@ class GenerateMolInfo:
         json_data = json.dumps(data_dict, default=str)
         return json.loads(json_data)
 
+    @property
     def synonym_data(self):
         """
         Returns synonym information in a dictionary that matches the SQL Synonyms Table schema
@@ -94,7 +94,7 @@ class ProcessDFT:
         self.DFTData = parsing_class(filepath)
 
     @property
-    def no_sql_data(self):
+    def data(self):
         """
         Returns DFT information in a dictionary that matches the No-SQL schema
         """
@@ -107,7 +107,7 @@ class ProcessDFT:
             "scf_total_energy": self.DFTData.scf_total_energy,
             "homo": self.DFTData.homo,
             "lumo": self.DFTData.lumo,
-            "homo_lumo_gap": self.DFTData.lumo,
+            "homo_lumo_gap": self.DFTData.lumo - self.DFTData.homo,
         }
         if self.sql:
             data_dict.update({"calculation_id": self.uuid, "mol_id": self.mol_id})
@@ -162,4 +162,4 @@ class ProcessUvVis:
         """
         Returns UV-Vis information in a dictionary that matches the SQL AbsorbanceData Table schema
         """
-        return [data.update({"uvvis_id": self.uuid, "mol_id": self.mol_id}) for data in self.UvVisData.absorbance_data]
+        return [data.update({"absorbance_id": str(uuid.uuid4()), "uvvis_id": self.uuid, "mol_id": self.mol_id}) for data in self.UvVisData.absorbance_data]
