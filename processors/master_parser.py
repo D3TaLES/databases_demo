@@ -53,7 +53,6 @@ class GenerateMolInfo:
         """
         data_dict = {
             "smiles": self.smiles,
-            "synonyms": self.synonyms,
             "molecular_formula": self.molecular_formula,
             "number_of_atoms": self.number_of_atoms,
             "molecular_weight": self.molecular_weight,
