@@ -35,6 +35,10 @@
           "lumo": {
             "description": "Lowest unoccupied molecular orbital. Units: eV",
             "type": "number"
+          },
+          "homo_lumo_gap": {
+            "description": "Gap between the highest occupied and lowest unoccupied molecular orbitals. Units: eV",
+            "type": "number"
           }
         }
 }
