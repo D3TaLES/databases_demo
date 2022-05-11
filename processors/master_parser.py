@@ -107,8 +107,8 @@ class ProcessDFT:
             "spin_multiplicity": self.DFTData.spin_multiplicity,
             "scf_total_energy": self.DFTData.scf_total_energy,
             "homo": self.DFTData.homo,
-            "lumo": self.DFTData.lumo - self.DFTData.homo,
-            "homo_lumo_gap": self.DFTData.lumo,
+            "lumo": self.DFTData.lumo,
+            "homo_lumo_gap": self.DFTData.lumo - self.DFTData.homo,
         }
         if self.sql:
             data_dict.update({"calculation_id": self.uuid, "mol_id": self.mol_id})
