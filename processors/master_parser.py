@@ -94,7 +94,7 @@ class ProcessDFT:
         self.DFTData = parsing_class(filepath)
 
     @property
-    def no_sql_data(self):
+    def data(self):
         """
         Returns DFT information in a dictionary that matches the No-SQL schema
         """
