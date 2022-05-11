@@ -68,6 +68,7 @@ class GenerateMolInfo:
         json_data = json.dumps(data_dict, default=str)
         return json.loads(json_data)
 
+    @property
     def synonym_data(self):
         """
         Returns synonym information in a dictionary that matches the SQL Synonyms Table schema
