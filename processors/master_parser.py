@@ -162,4 +162,8 @@ class ProcessUvVis:
         """
         Returns UV-Vis information in a dictionary that matches the SQL AbsorbanceData Table schema
         """
-        return [data.update({"absorbance_id": str(uuid.uuid4()), "uvvis_id": self.uuid, "mol_id": self.mol_id}) for data in self.UvVisData.absorbance_data]
+        # .update({"absorbance_id": str(uuid.uuid4()), "uvvis_id": self.uuid, "mol_id": self.mol_id})
+        data = self.UvVisData.absorbance_data
+        for entry in data:
+            entry.update({"absorbance_id": str(uuid.uuid4()), "uvvis_id": self.uuid, "mol_id": self.mol_id})
+        return data
