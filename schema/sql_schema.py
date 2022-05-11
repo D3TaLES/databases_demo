@@ -52,6 +52,7 @@ class UvVisData(Base):
 class AbsorbanceData(Base):
     __tablename__ = "absorbance_data"
 
+    absorbance_id = Column(String, primary_key=True)
     uvvis_id = Column(String, ForeignKey("uvvis_data.uvvis_id"))
     mol_id = Column(String, ForeignKey("molecules.mol_id"))
     wavelength = Column(Float)

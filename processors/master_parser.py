@@ -150,7 +150,7 @@ class ProcessUvVis:
             "integration_time": self.UvVisData.integration_time,
         }
         if self.sql:
-            data_dict.update({"uvvis_id": self.uuid, "mol_id": self.mol_id})
+            data_dict.update({"absorbance_id": str(uuid.uuid4()), "uvvis_id": self.uuid, "mol_id": self.mol_id})
         else:
             data_dict.update({"absorbance_data": self.UvVisData.absorbance_data})
 
