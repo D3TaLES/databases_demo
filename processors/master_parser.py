@@ -3,10 +3,11 @@ import uuid
 from datetime import date
 
 import pubchempy as pcp
-from rdkit.Chem import MolFromSmiles, MolToSmiles, AllChem
-from rdkit.Chem.rdMolDescriptors import CalcMolFormula, CalcExactMolWt
+from scipy.signal import find_peaks
 from rdkit.Chem.rdchem import Mol
 from rdkit.Chem.rdmolops import AddHs
+from rdkit.Chem import MolFromSmiles, MolToSmiles, AllChem
+from rdkit.Chem.rdMolDescriptors import CalcMolFormula, CalcExactMolWt
 
 from databases_demo.processors.dft_parser import *
 from databases_demo.processors.uvvis_parser import *
@@ -139,6 +140,19 @@ class ProcessUvVis:
         self.UvVisData = parsing_class(filepath)
 
     @property
+    def first_peak(self):
+        """
+        Get first peak from absorption data
+        Returns: float wavelength of the earliest peak
+        """
+        data = self.UvVisData.absorbance_data
+        wavelengths = [x.get('wavelength') for x in data]
+        absorbances = [x.get('absorbance') for x in data]
+        peaks, _ = find_peaks(absorbances, height=0.3)
+        peaks_wavelength = [wavelengths[p]for p in peaks]
+        return min(peaks_wavelength)
+
+    @property
     def data(self):
         """
         Returns UV-Vis information in a dictionary that matches the No-SQL or SQL schema
@@ -148,6 +162,7 @@ class ProcessUvVis:
             "solvent": self.solvent,
             "instrument": self.instrument,
             "integration_time": self.UvVisData.integration_time,
+            "optical_gap": round(1240 / self.first_peak, 3),  # convert from nm to eV
         }
         if self.sql:
             data_dict.update({"uvvis_id": self.uuid, "mol_id": self.mol_id})

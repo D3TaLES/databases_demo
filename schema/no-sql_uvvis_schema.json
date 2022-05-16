@@ -20,6 +20,10 @@
       "description": "",
       "type": "number"
     },
+    "optical_gap": {
+      "description": "Optical gap measured (eV)",
+      "type": "number"
+    },
     "absorbance_data": {
       "description": "Data points gather from UV-Vis scan",
       "type": "array",

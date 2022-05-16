@@ -47,6 +47,7 @@ class UvVisData(Base):
     solvent = Column(String)
     instrument = Column(String)
     integration_time = Column(Float)
+    optical_gap = Column(Float)
 
 
 class AbsorbanceData(Base):
