@@ -17,13 +17,9 @@ class ParseExcel:
         """
         Use Pandas to parse the raw data file
         """
-        try:
-            df = pd.read_excel(self.file_path, header=None, names=['col1', 'col2'])
-        except:
-            df = pd.read_csv(self.file_path, header=None, names=['col1', 'col2'])
-
-        self.data_df = df.iloc[4:, :].astype(float, errors='ignore').rename(
-            columns={'col1': 'wavelength', 'col2': 'absorbance'})
+        df = pd.read_excel(self.file_path, header=None, names=['col1', 'col2'])
+        data_df = df.iloc[4:, :].astype(float, errors='ignore')
+        self.data_df = data_df.rename(columns={'col1': 'wavelength', 'col2': 'absorbance'})
         self.string_data = df.iloc[:3, :]
 
     @property
