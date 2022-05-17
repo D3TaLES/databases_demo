@@ -1,16 +1,15 @@
 import json
 import uuid
+import pandas as pd
 from datetime import date
 
 import pubchempy as pcp
 from scipy.signal import find_peaks
 from rdkit.Chem.rdchem import Mol
 from rdkit.Chem.rdmolops import AddHs
+from pymatgen.io.gaussian import GaussianOutput
 from rdkit.Chem import MolFromSmiles, MolToSmiles, AllChem
 from rdkit.Chem.rdMolDescriptors import CalcMolFormula, CalcExactMolWt
-
-from databases_demo.processors.dft_parser import *
-from databases_demo.processors.uvvis_parser import *
 
 
 class GenerateMolInfo:
@@ -78,21 +77,22 @@ class GenerateMolInfo:
 
 class ProcessDFT:
     """
-    Class to process DFT logfiles.
+    Class to process DFT Gaussian logfiles.
     Copyright 2021, University of Kentucky
     Args:
         filepath (str) : filepath to data file
         mol_id (str) : identifier for the molecule this data belongs to
-        parsing_class (class) : a DFT parsing class with which to parse the data
     """
 
-    def __init__(self, filepath, mol_id=None, sql=True, parsing_class=ParseGausLog):
+    def __init__(self, filepath, mol_id=None, sql=True):
         self.log_path = filepath
         self.mol_id = mol_id
         self.uuid = str(uuid.uuid4())
         self.sql = sql
+        self.code_used = "Gaussian"
 
-        self.DFTData = parsing_class(filepath)
+        self.DFTData = GaussianOutput(filepath)
+        self.get_homo_lumo_data()
 
     @property
     def data(self):
@@ -100,21 +100,32 @@ class ProcessDFT:
         Returns DFT information in a dictionary that matches the No-SQL schema
         """
         data_dict = {
-            "code_used": self.DFTData.code_used,
+            "code_used": self.code_used,
             "functional": self.DFTData.functional,
             "basis_set": self.DFTData.basis_set,
             "charge": self.DFTData.charge,
             "spin_multiplicity": self.DFTData.spin_multiplicity,
-            "scf_total_energy": self.DFTData.scf_total_energy,
-            "homo": self.DFTData.homo,
-            "lumo": self.DFTData.lumo,
-            "homo_lumo_gap": self.DFTData.lumo - self.DFTData.homo,
+            "scf_total_energy": self.DFTData.final_energy * 27.2114,  # convert to eV
+            "homo": self.homo,
+            "lumo": self.lumo,
+            "homo_lumo_gap": self.lumo - self.homo,
         }
         if self.sql:
             data_dict.update({"calculation_id": self.uuid, "mol_id": self.mol_id})
 
         json_data = json.dumps(data_dict, default=str)
         return json.loads(json_data)
+
+    def get_homo_lumo_data(self):
+        """
+        Get homo and lumo energies from a Gaussian molecule
+        return
+            homo_lumo (dict) : dictionary containing homo then lumo in eV
+        """
+        num_electrons = self.DFTData.electrons[0]
+        eigens = list(self.DFTData.eigenvalues.values())[0]
+        self.homo = eigens[num_electrons - 1] * 27.2114  # convert to eV
+        self.lumo = eigens[num_electrons] * 27.2114  # convert to eV
 
 
 class ProcessUvVis:
@@ -125,11 +136,11 @@ class ProcessUvVis:
         filepath (str) : filepath to data file
         mol_id (str) : identifier for the molecule this data belongs to
         metadata (dict) : dictionary containing any metadata for this molecule, e.g., {"solvent": "acetonitrile"}
-        parsing_class (class) : a UV-Vis parsing class with which to parse the data
     """
 
-    def __init__(self, filepath, mol_id, metadata=None, sql=True, parsing_class=ParseExcel):
+    def __init__(self, filepath, mol_id, metadata=None, sql=True,):
         self.mol_id = mol_id
+        self.filepath = filepath
         self.uuid = str(uuid.uuid4())
         self.sql = sql
 
@@ -137,7 +148,30 @@ class ProcessUvVis:
         self.instrument = metadata.get("instrument", '')
         self.solvent = metadata.get("solvent", '')
 
-        self.UvVisData = parsing_class(filepath)
+        self.parse_file()
+
+    def parse_file(self):
+        """
+        Use Pandas to parse the raw data file
+        """
+        df = pd.read_csv(self.filepath, header=None, names=['col1', 'col2'])
+        data_df = df.iloc[4:, :].astype(float, errors='ignore')
+        self.data_df = data_df.rename(columns={'col1': 'wavelength', 'col2': 'absorbance'})
+        self.string_data = df.iloc[:3, :]
+
+    @property
+    def integration_time(self):
+        query = self.string_data[self.string_data["col1"].str.contains('Integration Time')]['col2'].values
+        return query[0] if query else None
+
+    @property
+    def date_recorded(self):
+        query = self.string_data[self.string_data["col1"].str.contains('Timestamp')]['col2'].values
+        return query[0] if query else ''
+
+    @property
+    def raw_absorbance_data(self):
+        return self.data_df.to_dict('records')
 
     @property
     def first_peak(self):
@@ -145,7 +179,7 @@ class ProcessUvVis:
         Get first peak from absorption data
         Returns: float wavelength of the earliest peak
         """
-        data = self.UvVisData.absorbance_data
+        data = self.raw_absorbance_data
         wavelengths = [x.get('wavelength') for x in data]
         absorbances = [x.get('absorbance') for x in data]
         peaks, _ = find_peaks(absorbances, height=0.3)
@@ -158,16 +192,16 @@ class ProcessUvVis:
         Returns UV-Vis information in a dictionary that matches the No-SQL or SQL schema
         """
         data_dict = {
-            "date_recorded": self.UvVisData.date_recorded,
+            "date_recorded": self.date_recorded,
             "solvent": self.solvent,
             "instrument": self.instrument,
-            "integration_time": self.UvVisData.integration_time,
+            "integration_time": self.integration_time,
             "optical_gap": round(1240 / self.first_peak, 3),  # convert from nm to eV
         }
         if self.sql:
             data_dict.update({"uvvis_id": self.uuid, "mol_id": self.mol_id})
         else:
-            data_dict.update({"absorbance_data": self.UvVisData.absorbance_data})
+            data_dict.update({"absorbance_data": self.raw_absorbance_data})
 
         json_data = json.dumps(data_dict, default=str)
         return json.loads(json_data)
@@ -178,7 +212,7 @@ class ProcessUvVis:
         Returns UV-Vis information in a dictionary that matches the SQL AbsorbanceData Table schema
         """
         # .update({"absorbance_id": str(uuid.uuid4()), "uvvis_id": self.uuid, "mol_id": self.mol_id})
-        data = self.UvVisData.absorbance_data
+        data = self.raw_absorbance_data
         for entry in data:
             entry.update({"absorbance_id": str(uuid.uuid4()), "uvvis_id": self.uuid, "mol_id": self.mol_id})
         return data
