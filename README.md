@@ -8,13 +8,13 @@ an example notebook that shows how to:
 3. Insert validated data into the database
 4. Query the database.
 
-The repository contains four key directories: 
+The repository contains four key parts: 
 
-* `schema`: Contains the all schema for both SQL and No-SQL database examples. 
-* `raw_data`: Contains the raw data files for data that is inserted into the databases 
+* `schema`: Directory containing the schema for both SQL and No-SQL database examples. 
+* `raw_data`: Directory containing the raw data files for data that is inserted into the databases 
 in the examples. There are two computational data files (one from the software 
 Gaussian and one from the software Psi4) and one experimental potetiostat file. 
-* `processors`:  Contains python code for extracting key values from the raw
+* `file_parser.py`:  File containing python code for extracting key values from the raw
 computational and experimental data files. These parsing codes are used in the 
 examples. 
 

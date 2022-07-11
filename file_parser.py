@@ -95,6 +95,7 @@ class ProcessDFT:
         self.DFTData = GaussianOutput(filepath)
         self.get_homo_lumo_data()
         self.singlet_excitations = self.get_tddft_excitations(filepath)["Singlet"]
+        self.singlet_excitations_energy = [e[0] for e in self.singlet_excitations]  # extract eV energy value
 
     @property
     def data(self):
@@ -110,7 +111,7 @@ class ProcessDFT:
             "scf_total_energy": self.DFTData.final_energy * 27.2114,  # convert to eV
             "homo": self.homo,
             "lumo": self.lumo,
-            "first_excitation": [e[0] for e in self.singlet_excitations]  # extract eV energy value
+            "first_excitation": self.singlet_excitations_energy[0]
         }
         if self.sql:
             data_dict.update({"calculation_id": self.uuid, "mol_id": self.mol_id})
