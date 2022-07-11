@@ -18,6 +18,9 @@ Gaussian and one from the software Psi4) and one experimental potetiostat file.
 computational and experimental data files. These parsing codes are used in the 
 examples. 
 
+## Parsing Example
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1FtbRfouaGiRR2nibwRjlo938GYOF2N1W?usp=sharing)
+
 ## SQL Example
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1gQV3LxoQ65NyTFQulHzLTp8IRV3lCICT?usp=sharing)
 
