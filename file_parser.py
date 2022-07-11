@@ -209,7 +209,7 @@ class ProcessUvVis:
     @property
     def integration_time(self):
         query = self.string_data[self.string_data["col1"].str.contains('Integration Time')]['col2'].values
-        return query[0] if query else None
+        return float(query[0]) if query else None
 
     @property
     def date_recorded(self):
