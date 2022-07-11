@@ -76,8 +76,8 @@
           "description": "Lowest unoccupied molecular orbital. Units: eV",
           "type": "number"
         },
-        "homo_lumo_gap": {
-          "description": "Gap between the highest occupied and lowest unoccupied molecular orbitals. Units: eV",
+        "first_excitation": {
+          "description": "First single excitation from TD-DFT calculation. Units: eV",
           "type": "number"
         }
       }

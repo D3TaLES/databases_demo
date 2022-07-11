@@ -35,7 +35,7 @@ class DftData(Base):
     scf_total_energy = Column(Float)
     homo = Column(Float)
     lumo = Column(Float)
-    homo_lumo_gap = Column(Float)
+    first_excitation = Column(Float)
 
 
 class UvVisData(Base):
