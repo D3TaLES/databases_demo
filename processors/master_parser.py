@@ -108,7 +108,7 @@ class ProcessDFT:
             "scf_total_energy": self.DFTData.scf_total_energy,
             "homo": self.DFTData.homo,
             "lumo": self.DFTData.lumo,
-            "homo_lumo_gap": self.DFTData.lumo - self.DFTData.homo,
+            "first_excitation": self.DFTData.singlet_excitations_energy[0]
         }
         if self.sql:
             data_dict.update({"calculation_id": self.uuid, "mol_id": self.mol_id})
