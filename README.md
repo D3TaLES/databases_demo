@@ -10,6 +10,7 @@ an example notebook that shows how to:
 
 The repository contains four key parts: 
 
+* `notebooks`: Directory containing the example notebooks that demonstrate file processing and using SQL and No-SQL databases. 
 * `schema`: Directory containing the schema for both SQL and No-SQL database examples. 
 * `raw_data`: Directory containing the raw data files for data that is inserted into the databases 
 in the examples. There are two computational data files (one from the software 
