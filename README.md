@@ -19,11 +19,14 @@ computational and experimental data files. These parsing codes are used in the
 examples. 
 
 ## Parsing Example
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1FtbRfouaGiRR2nibwRjlo938GYOF2N1W?usp=sharing)
+[Open in GitHub](notebooks/parsing_notebook.ipynb)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1FtbRfouaGiRR2nibwRjlo938GYOF2N1W?usp=sharing)
 
 ## SQL Example
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1gQV3LxoQ65NyTFQulHzLTp8IRV3lCICT?usp=sharing)
+[Open in GitHub](notebooks/sql_notebook.ipynb)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1gQV3LxoQ65NyTFQulHzLTp8IRV3lCICT?usp=sharing)
 
 ## No-SQL Example
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1LFJUazlB9JYoeqk6U9OVJ3l_m6tu_knD?usp=sharing)
+[Open in GitHub](notebooks/no-sql_notebook.ipynb)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1LFJUazlB9JYoeqk6U9OVJ3l_m6tu_knD?usp=sharing)
 
