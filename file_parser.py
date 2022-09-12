@@ -35,7 +35,7 @@ class GenerateMolInfo:
 
         # Populate class
         self.sql = sql
-        self._id = str(pcpmol.iupac_name)
+        self._id = names[0] if len(names)>1 else str(pcpmol.iupac_name)
         self.source = source
         self.date_made = date_made or date.today()
         self.smiles = clean_smile
