@@ -231,7 +231,7 @@ class ProcessUvVis:
         absorbances = [x.get('absorbance') for x in data]
         peaks, _ = find_peaks(absorbances, height=0.3)
         peaks_wavelength = [wavelengths[p]for p in peaks]
-        return min(peaks_wavelength)
+        return max(peaks_wavelength)
 
     @property
     def data(self):
