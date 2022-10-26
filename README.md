@@ -22,11 +22,11 @@ examples. The [processing_notebook.ipynb](notebooks/processing_notebook.ipynb) s
 
 
 ## Parsing Example
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1FtbRfouaGiRR2nibwRjlo938GYOF2N1W?usp=sharing)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/D3TaLES/databases_demo/blob/main/notebooks/processing_notebook.ipynb)
 
 ## SQL Example
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1gQV3LxoQ65NyTFQulHzLTp8IRV3lCICT?usp=sharing)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/D3TaLES/databases_demo/blob/main/notebooks/sql_notebook.ipynb)
 
 ## No-SQL Example
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1LFJUazlB9JYoeqk6U9OVJ3l_m6tu_knD?usp=sharing)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/D3TaLES/databases_demo/blob/main/notebooks/no_sql_notebook.ipynb)
 
