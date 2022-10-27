@@ -17,16 +17,16 @@ in the examples. There are two computational data files (one from the software
 Gaussian and one from the software Psi4) and one experimental potetiostat file. 
 * [`file_parser.py`](file_parser.py):  File containing python code for extracting key values from the raw
 computational and experimental data files. These parsing codes are used in the 
-examples. The [processing_notebook.ipynb](notebooks/processing_notebook.ipynb) shows the coding principles behind the code in file_parser.py
+examples. The [processing_notebook.ipynb](notebooks/processing_demo.ipynb) shows the coding principles behind the code in file_parser.py
 * [`external_resources.md`](external_resources.md): A list of external resources that give more specific details for setting up a database.
 
 
 ## Parsing Example
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/D3TaLES/databases_demo/blob/main/notebooks/processing_notebook.ipynb)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/D3TaLES/databases_demo/blob/main/notebooks/processing_demo.ipynb)
 
 ## SQL Example
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/D3TaLES/databases_demo/blob/main/notebooks/sql_notebook.ipynb)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/D3TaLES/databases_demo/blob/main/notebooks/sql_demo.ipynb)
 
 ## No-SQL Example
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/D3TaLES/databases_demo/blob/main/notebooks/no_sql_notebook.ipynb)
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/D3TaLES/databases_demo/blob/main/notebooks/no_sql_demo.ipynb)
 
