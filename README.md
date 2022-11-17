@@ -30,3 +30,7 @@ examples. The [processing_notebook.ipynb](notebooks/processing_demo.ipynb) shows
 ## No-SQL Example
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/D3TaLES/databases_demo/blob/main/notebooks/no_sql_demo.ipynb)
 
+# Citing
+If you find this useful, please cite the following article -
+
+Duke, R.; Bhat, V.; Risko, C. Data Storage Architectures to Accelerate Chemical Discovery: Data Accessibility for Individual Laboratories and the Community. Chemical Science 2022. [https://doi.org/10.1039/d2sc05142g](https://doi.org/10.1039/d2sc05142g).
